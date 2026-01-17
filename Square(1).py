@@ -1,37 +1,30 @@
 class Square:
-    def __init__(self, length = 5):
-        if length < 0:
-            length = -length
-        self.__length = length
-        self.__ch = '*'
+    def __init__(self, length=5):
+        # We set the property (self.length) to trigger the setter's validation logic immediately
+        self.length = length
+        self.ch = '*'
 
-    def get_length(self):
-        return self.__length
+    @property
+    def length(self):
+        return self._length
 
-    def get_ch(self):
-        return self.__ch
+    @length.setter
+    def length(self, value):
+        # Uses abs() for cleaner logic
+        self._length = abs(value)
 
-    def set_length(self, length):
-        if length < 0:
-            length = -length
-        self.__length = length
-
-    def set_ch(self, ch):
-        self.__ch = ch
-
+    # Area Calculation: s^2
     def calc_area(self):
-        return self.__length * self.__length
+        return self._length ** 2
 
+    # Perimeter Calculation: 4s
     def calc_perimeter(self):
-        return self.__length * 4
+        return self._length * 4
 
     def __str__(self):
-        shape_str = ""
-        for i in range(self.__length):
-            for j in range(self.__length):
-                shape_str += self.__ch
-            shape_str += "\n"
-        return shape_str
-
-
-
+        # Pythonic optimization: Multiply strings instead of looping
+        # 1. Create one row: self.ch * self._length
+        # 2. Add a newline
+        # 3. Multiply that whole row by the number of rows (self._length)
+        row = (self.ch * self._length) + "\n"
+        return row * self._length
