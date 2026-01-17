@@ -1,13 +1,20 @@
-import Square
+from Square import Square
 
-s1 = Square.Square()
-s2 = Square.Square(10)
-s3 = Square.Square(-3)
+if __name__ == "__main__":
+    s1 = Square()
+    s2 = Square(10)
+    s3 = Square(-3)  # This will correctly convert to 3 via the setter
 
-s1.set_ch('*')
-s2.set_ch('#')
-s3.set_ch('@')
+    # Accessing attributes directly thanks to @property
+    s1.ch = '*'
+    s2.ch = '#'
+    s3.ch = '@'
 
-print(s1)
-print(s2)
-print(s3)
+    print("Square 1:")
+    print(s1)
+
+    print("Square 2:")
+    print(s2)
+
+    print("Square 3 (corrected from -3):")
+    print(s3)
